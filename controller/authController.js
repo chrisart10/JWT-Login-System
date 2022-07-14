@@ -10,14 +10,13 @@ const maxAge = process.env.MAXAGE; // 259200 = 1 day
 const securePhrase = process.env.CLAVE;
 
 module.exports.login_get = (req,res)=>{
-    console.log(process.env.CLAVE);
     res.render('login.ejs')
 }
 
 module.exports.login_post =  (req,res)=>{
     
     if(pass ===  req.body.password){
-        console.log(req.body);
+        //console.log(req.body);
         const token = jwt.sign({id},securePhrase,{expiresIn:maxAge});
         res.cookie('name',req.body.name);
         res.cookie('jwt',token,{maxAge : 1000*maxAge,httpOnly:true});
